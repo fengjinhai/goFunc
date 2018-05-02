@@ -8,7 +8,7 @@ import (
     "strings"
 )
 
-func read(filename string) []string {
+func read(filename string) []string{
     var datalines []string
     f, err := os.Open(filename)
     if err != nil {
@@ -32,10 +32,26 @@ func read(filename string) []string {
     return datalines 
 }
 
+func check(e error){
+    if e != nil {
+        panic(e)
+    }
+}
+
+func write(filename string, datalines []string){
+    f, err:= os.Create(filename)
+    check(err)
+    for i := range datalines {
+        fmt.Println(datalines[i])
+        n, err := f.WriteString(datalines[i] + "\n")
+        check(err)
+        fmt.Printf("write %d bytes\n", n)
+    }
+    defer f.Close()
+}
+
 func main(){
     var datalines []string
     datalines = read("./test.log")
-    for i := range datalines {
-        fmt.Println(datalines[i])
-    }
+    write("./test2.log", datalines)
 }
