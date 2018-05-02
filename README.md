@@ -1,1 +1,1 @@
-# goFuc
+# goFunc
