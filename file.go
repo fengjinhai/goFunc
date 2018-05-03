@@ -8,6 +8,13 @@ import (
     "strings"
 )
 
+func check(e error){
+    if e != nil {
+        panic(e)
+    }
+}
+
+//文件读取到切片里面，输入文件名
 func read(filename string) []string{
     var datalines []string
     f, err := os.Open(filename)
@@ -32,12 +39,8 @@ func read(filename string) []string{
     return datalines 
 }
 
-func check(e error){
-    if e != nil {
-        panic(e)
-    }
-}
 
+//把切片里面的文件写入到本地
 func write(filename string, datalines []string){
     f, err:= os.Create(filename)
     check(err)
