@@ -5,6 +5,7 @@ import (
     "io/ioutil"
     "time"
     "os"
+    "strings"
     "net"
     "golang.org/x/net/proxy"
 )
